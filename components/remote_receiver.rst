@@ -62,6 +62,7 @@ Configuration variables:
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
   - **mirage**: Decode and dump Mirage infrared codes.
+  - **nexus**: Decode and dump Nexus temperature & humidity sensor RF codes.
 
 - **tolerance** (*Optional*, int, :ref:`config-time` or mapping): The percentage or time that the remote signal lengths can
   deviate in the decoding process.  Defaults to ``25%``.
@@ -194,6 +195,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_mirage** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Mirage remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::MirageData`
+  is passed to the automation for use in lambdas.
+- **on_nexus** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Nexus remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::NexusData`
   is passed to the automation for use in lambdas.
 
 .. code-block:: yaml
@@ -437,6 +441,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **code** (**Required**, 14-bytes list): The code to listen for, see :ref:`transmitter description <remote_transmitter-transmit_mirage>`
     for more info. Usually you only need to copy this directly from the dumper output.
+
+- **nexus**: Trigger on a decoded Nexus remote code with the given data.
+
+  - **channel** (**Required**, int): The channel to trigger on, see dumper output for more info.
+  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
 
 .. note::
 
